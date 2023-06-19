@@ -1,10 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="ISO-8859-1">
     <title>View ToDo Item List</title>
@@ -23,6 +19,7 @@
             color: white;
             text-decoration: none;
         }
+
     </style>
 
 </head>
@@ -31,41 +28,45 @@
 <div class="container">
 
     <h1 class="p-3">ToDo Item List</h1>
+    <table class="table table-bordered">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Mark Completed</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
 
-    <form:form>
+        <tr th:each="todo: ${list}">
+            <td th:text="${todo.id}"></td>
+            <td th:text="${todo.title}"></td>
+            <td th:text="${todo.date}"></td>
+            <td th:text="${todo.status}"></td>
+            <td>
+                <button type="button" class="btn btn-success"><a href="/updateToDoStatus/${todo.id}">Mark Complete</a>
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary"><a href="/editToDoItem/${todo.id}">Edit</a></button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger"><a href="/deleteToDoItem/${todo.id}">Delete</a></button>
+            </td>
+        </tr>
 
-        <table class="table table-bordered">
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Mark Completed</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
+    </table>
 
-            <c:forEach var="todo" items="${list}">
-                <tr>
-                    <td>${todo.id}</td>
-                    <td>${todo.title}</td>
-                    <td>${todo.date}</td>
-                    <td>${todo.status}</td>
-                    <td><button type="button" class="btn btn-success"><a href="/updateToDoStatus/${todo.id}">Mark Complete</a></button></td>
-                    <td><button type="button" class="btn btn-primary"><a href="/editToDoItem/${todo.id}">Edit</a></button></td>
-                    <td><button type="button" class="btn btn-danger"><a href="/deleteToDoItem/${todo.id}">Delete</a></button></td>
-                </tr>
-            </c:forEach>
-        </table>
-    </form:form>
-
-    <button type="button" class="btn btn-primary btn-block"><a href="/addToDoItem">Add New ToDo Item</a></button>
+    <a href="/addToDoItem">
+        <button type="button" class="btn btn-primary btn-block">Add New ToDo Item</button>
+    </a>
 
 </div>
-
+<input type="hidden" id="myInput" th:value="${message}" />
 <script th:inline="javascript">
     window.onload = function() {
-        var msg = "${message}";
+        var msg = document.getElementById('myInput').value;
 
         if (msg === "Save Success") {
             toastr.success("Item added successfully!!");
@@ -94,6 +95,7 @@
             "hideMethod": "fadeOut"
         };
     };
+
 </script>
 
 </body>

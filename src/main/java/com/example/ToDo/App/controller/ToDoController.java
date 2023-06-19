@@ -22,6 +22,7 @@ public class ToDoController {
 	public String viewAlToDolItems(Model model, @ModelAttribute("message") String message) {
 		model.addAttribute("list", service.getAllToDoItems());
 		model.addAttribute("message", message);
+		model.addAttribute("name", "Bright");
 		return "ViewToDoList";
 	}
 	
