@@ -40,7 +40,7 @@ public class ToDoController {
 	public String addToDoItem(Model model) {
 		model.addAttribute("todo", new ToDo());
 		
-		return "AddToDoItem.jsp";
+		return "AddToDoItem.html";
 	}
 	
 	@PostMapping("/saveToDoItem")
@@ -57,7 +57,7 @@ public class ToDoController {
 	public String editToDoItem(@PathVariable Long id, Model model) {
 		model.addAttribute("todo", service.getToDoItemById(id));
 		
-		return "EditToDoItem.jsp";
+		return "EditToDoItem.html";
 	}
 	
 	@PostMapping("editSaveToDoItem")
