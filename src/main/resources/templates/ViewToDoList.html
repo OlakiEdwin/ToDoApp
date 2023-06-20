@@ -45,7 +45,8 @@
             <td th:text="${todo.date}"></td>
             <td th:text="${todo.status}"></td>
             <td>
-                <button type="button" class="btn btn-success"><a href="/updateToDoStatus/${todo.id}">Mark Complete</a>
+<!--                <a th:href="@{/editToDoItem/{id}(id=${todo.id})}">Edit</a>-->
+                <button type="button" class="btn btn-success"><a href="#" th:href="@{/updateToDoStatus/{id}(id=${todo.id})}">Mark Complete</a>
                 </button>
             </td>
             <td>
