@@ -11,47 +11,44 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.min.js"></script>
 </head>
 <body>
-    <div class="container">
-
-        <h1 class="p-3">Edit ToDo Item</h1>
-
-        <form action="/editSaveToDoItem" method="post" modelAttribute="todo">
-            <input path="id" type="hidden"/>
-
+<div class="container">
+    <h1 class="p-3">Edit ToDo Item</h1>
+    <form action="/editSaveToDoItem" method="post" th:object="${todo}">
+        <input type="hidden" th:field="*{id}" />
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="title">Title</label>
                 <div class="col-md-6">
-                    <input type="text" path="title" id="title" class="form-control input-sm" required="required" />
+                    <input type="text" th:field="*{title}" id="title" class="form-control input-sm" required="required" />
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="date">Date</label>
                 <div class="=col-md-6">
-                    <input type="date" path="date" id="date" class="form-control input-sn" required="required" />
+                    <input type="date" th:field="*{date}" id="date" class="form-control input-sn" required="required" />
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="status">Status</label>
                 <div class="col-md-6">
-                    <input type="text" path="status" class="form-control input-sm" value="Incomplete" />
+                    <input type="text" th:field="*{status}" class="form-control input-sm" value="Incomplete" />
                 </div>
             </div>
         </div>
-
         <div class="row p-2">
             <div class="col-md-2">
                 <button type="submit" value="Register" class="btn-success">Save</button>
             </div>
         </div>
+    </form>
+</div>
 
-        </form>
+
+</form>
     </div>   
 
     <script th:inline="javascript">
