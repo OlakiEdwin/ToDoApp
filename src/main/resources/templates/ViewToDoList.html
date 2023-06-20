@@ -50,10 +50,10 @@
                 </button>
             </td>
             <td>
-                <button type="button" class="btn btn-primary"><a href="/editToDoItem/${todo.id}">Edit</a></button>
+                <button type="button" class="btn btn-primary"><a href="#" th:href="@{/editToDoItem/{id}(id=${todo.id})}">Edit</a></button>
             </td>
             <td>
-                <button type="button" class="btn btn-danger"><a href="/deleteToDoItem/${todo.id}">Delete</a></button>
+                <button type="button" class="btn btn-danger"><a href="#" th:href="@{/deleteToDoItem/{id}(id=${todo.id})}">Delete</a></button>
             </td>
         </tr>
 
