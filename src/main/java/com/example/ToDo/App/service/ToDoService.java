@@ -44,8 +44,7 @@ public class ToDoService {
 	
 	public boolean deleteToDoItem(Long id) {
 		Repo.deleteById(id);
-		
-		if (getToDoItemById(id) == null) {
+		if (Repo.findById(id).isEmpty()) {
 			return true;
 		}
 		return false;
