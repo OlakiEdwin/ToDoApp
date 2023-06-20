@@ -25,7 +25,7 @@ public class ToDoController {
 		return "ViewToDoList";
 	}
 	
-	@PostMapping("/updateToDoStatus{id}")
+	@GetMapping("/updateToDoStatus/{id}")
 	public String updateToDoStatus(@PathVariable Long id, RedirectAttributes redirectAttributes) {
 		 if (service.updateStatus(id)) {
 			 redirectAttributes.addFlashAttribute("message", "Update Success");
